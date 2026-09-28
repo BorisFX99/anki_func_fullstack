@@ -18,8 +18,7 @@ def load_words(filename: str = 'words.txt') -> Dict[str, str]:
                     continue
                 parts = line.split(',', 1)
                 if len(parts) == 2:
-                    word = parts[0].strip()
-                    translation = parts[1].strip()
+                    word, translation = parts[0], parts[1]
                     if word and translation:
                         dictionary[word] = translation
         return dictionary
@@ -34,7 +33,7 @@ def print_statistics(score: int, total_time: float) -> None:
         average_time = total_time / score
         average_time_str = f'{average_time:.2f} сек.'
     else:
-        average_time_str = '-'
+        average_time_str = '—'
     print(f'Ваш итоговый счёт: {score}')
     time_line = (
         f'Время игры: {total_time:.2f} секунд '
@@ -145,14 +144,14 @@ def add_words(words: Dict[str, str]) -> None:
 
 
 def save_words(
-    words_dict: Dict[str, str],
+    words: Dict[str, str],
     filename: str = 'words.txt'
 ) -> None:
     """Сохраняет все пары «слово, перевод» из словаря в текстовый файл"""
     with open(filename, 'w', encoding='utf-8') as f:
-        for word, translate in words_dict.items():
+        for word, translate in words.items():
             f.write(f'{word},{translate}\n')
-    print(f'Было сохранено {len(words_dict)} слов в файл {filename}.')
+    print(f'Было сохранено {len(words)} слов в файл {filename}.')
 
 
 def main() -> None:
