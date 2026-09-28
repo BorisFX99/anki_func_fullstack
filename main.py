@@ -16,7 +16,7 @@ def load_words(filename: str = 'words.txt') -> Dict[str, str]:
                 line = line.strip()
                 if not line:
                     continue
-                parts = line.split(',', 1)
+                parts = line.split(',')
                 if len(parts) == 2:
                     word, translation = parts[0], parts[1]
                     if word and translation:
@@ -34,7 +34,7 @@ def print_statistics(score: int, total_time: float) -> None:
         average_time_str = f'{average_time:.2f} сек.'
     else:
         average_time_str = '—'
-    print(f'Ваш итоговый счёт: {score}')
+    print(f'Ваш итоговый счет: {score}')
     time_line = (
         f'Время игры: {total_time:.2f} секунд '
         f'(среднее время: {average_time_str})'
